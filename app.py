@@ -37,10 +37,11 @@ def home():
         user_info = db.user.find_one({"id": payload['id']})
         return render_template('index.html', user_id=user_info["id"])
     except jwt.ExpiredSignatureError:
-        return jsonify({'msg': '로그인 시간이 만료되었습니다.'})
+        # return jsonify({'msg': '로그인 시간이 만료되었습니다.'})
+        return render_template('index.html')
     except jwt.exceptions.DecodeError:
-        return jsonify({'msg': '로그인 정보가 존재하지 않습니다.'})
-
+        # return jsonify({'msg': '로그인 정보가 존재하지 않습니다.'})
+        return render_template('index.html')
 
 @app.route('/login')
 def login():
@@ -55,6 +56,10 @@ def register():
 @app.route('/category')
 def category():
     return render_template('home-category.html')
+
+@app.route('/post')
+def category():
+    return render_template('home-posts.html')
 
 
 @app.route('/api/register', methods=['POST'])
@@ -101,7 +106,7 @@ def api_login():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route('/category', methods=['POST'])
+@app.route('/api/category', methods=['POST'])
 def category_register():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -133,14 +138,14 @@ def category_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
-@app.route('/categories', methods=['GET'])
+@app.route('/api/categories', methods=['GET'])
 def category_list():
     category_list = list(db.category.find({}, {'_id': False}))
 
     return jsonify({'categories': category_list})
 
 
-@app.route('/post', methods=['POST'])
+@app.route('/api/posting', methods=['POST'])
 def post_register():
     token_receive = request.cookies.get('mytoken')
 
@@ -178,7 +183,8 @@ def post_register():
             'title': title_receive,
             'desc': desc_receive,
             'image': image,
-            'category': int(category_receive)
+            'category': int(category_receive),
+            'reg_dt': datetime.now()
         }
         db.post.insert_one(doc)
 
@@ -190,11 +196,19 @@ def post_register():
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 
-@app.route("/homework", methods=["GET"])
-def homework_get():
-    comment_list = list(db.comments.find({}, {'_id': False}))
+@app.route("/api/posts", methods=["GET"])
+def post_list():
 
-    return jsonify({'comments': comment_list})
+    posts_list = list(db.post.find({}, {'_id': False}))
+
+    return jsonify({'posts': posts_list})
+
+@app.route("/api/post", methods=["GET"])
+def homework_get():
+
+    posts_list = list(db.post.find({}, {'_id': False}))
+
+    return jsonify({'comments': posts_list})
 
 
 if __name__ == '__main__':
