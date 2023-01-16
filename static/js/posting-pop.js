@@ -8,13 +8,17 @@ function posting() {
     let post_url = $('#postPop__url').val();
     let post_title = $('#postPop__title').val();
     let post_desc = $('#postPop__titlecomments').val();
+    let url_href = window.location.href;
+    let url = new URL(url_href);
+    let a = url.searchParams.get('id');
 
     $.ajax({
         type: 'POST',
         url: '/api/posting',
-        data: { post_url: post_url, post_title: post_title, post_desc: post_desc },
+        data: { post_url: post_url, post_title: post_title, post_desc: post_desc, post_category: a },
         success: function (response) {
-            console.log(response);
+            alert('성공하였습니다.');
+            window.location.href = `/post?id=${a}`;
         },
     });
 }
@@ -22,9 +26,12 @@ function posting() {
 // =================================
 
 function urlPosting() {
+    let url_href = window.location.href;
+    let url = new URL(url_href);
+    let a = url.searchParams.get('id');
     $.ajax({
         type: 'GET',
-        url: '/api/posts',
+        url: `/api/posts?category_id=${a}`,
         data: {},
         success: function (response) {
             let rows = response['posts'];
@@ -67,6 +74,7 @@ function postCatagory() {
         data: {},
         success: function (response) {
             let rows = response['posts'];
+            console.log(rows);
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
