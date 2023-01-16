@@ -77,7 +77,7 @@ function categoryPosting() {
             let rows = response['categories'];
             for (let i = 0; i < rows.length; i++) {
                 let category_title = rows[i]['name'];
-                let category_img = rows[i]['image'];
+                let category_img = rows[i]['img'];
                 let id = rows[i]['id'];
                 let temp_html = `<div class="col cards-box" id=${id} data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
                 <div class="cards-box__cate-container">

@@ -1,6 +1,6 @@
 // typing
 let typeText = document.querySelector('.typing');
-let textToBeTypedArr = ['링클링클', 'Linkle Likle'];
+let textToBeTypedArr = ['링클링클', 'Linkle Linkle'];
 let index = 0,
     isAdding = true,
     textToBeTypedIndex = 0;
