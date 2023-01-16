@@ -43,7 +43,8 @@ function category() {
         url: 'api/category',
         data: { category_name: category_name, category_img_url: img_url },
         success: function (response) {
-            console.log(response);
+            alert('등록 완료!');
+            window.location.href = '/category';
         },
     });
 }
