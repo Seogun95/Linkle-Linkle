@@ -139,18 +139,22 @@ def category_register():
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
         category_list = list(db.category.find({}, {'_id': False}))
-        count = len(category_list) + 1
+        category = db.category.find_one({'name': category_receive})
+        if category is None:
+            count = len(category_list) + 1
 
-        doc = {
-            'id': count,
-            'author': userinfo['id'],
-            'img' : img_receive,
-            'name': category_receive,
-            'status': 0
-        }
-        db.category.insert_one(doc)
+            doc = {
+                'id': count,
+                'author': userinfo['id'],
+                'img' : img_receive,
+                'name': category_receive,
+                'status': 0
+            }
+            db.category.insert_one(doc)
 
-        return jsonify({'result': 'success'})
+            return jsonify({'result': 'success'})
+        else:
+            return jsonify({'result': 'fail', 'msg': '해당 이름의 카테고리가 이미 존재합니다.'})
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
