@@ -54,7 +54,7 @@ def register():
     return render_template('register.html')
 
 @app.route('/category')
-def register():
+def category():
     return render_template('home-category.html')
 
 
