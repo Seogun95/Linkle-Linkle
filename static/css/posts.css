@@ -175,23 +175,34 @@
 }
 .card-box__like-comment-container {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
     z-index: 1;
 }
 .card-box__like-comment-container button {
-    padding: 0.3rem;
+    padding: 0;
 }
 .card-box__like-comment-container .like:before,
 .card-box__like-comment-container .comment:before {
     font-size: 1.5rem;
+    font-weight: 300;
+    transition: 0.3s ease;
 }
-.like.btn:hover:before {
-    font-weight: 900;
+.like.btn:hover:before,
+.like.btn:hover:active {
+    font-weight: 500;
+    color: #be4b4b;
 }
 .card-box__like-comment-container .like:before {
     content: '\f598';
-    color: #d22626;
+    color: #4b4b4b;
+    background: #bfbfbf45;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .card-box__like-comment-container .comment:before {
