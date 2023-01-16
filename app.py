@@ -58,14 +58,14 @@ def category():
     return render_template('home-category.html')
 
 @app.route('/post')
-def category():
+def posts():
     return render_template('home-posts.html')
 
 
 @app.route('/api/register', methods=['POST'])
 def api_register():
-    id_receive = request.form['id']
-    pw_receive = request.form['pw']
+    id_receive = request.form['id_name']
+    pw_receive = request.form['passwd_one']
 
     user = db.user.find_one({'id': id_receive})
     if user is None:
@@ -78,8 +78,8 @@ def api_register():
 
 @app.route('/api/login', methods=['POST'])
 def api_login():
-    id_receive = request.form['id']
-    pw_receive = request.form['pw']
+    id_receive = request.form['id_give']
+    pw_receive = request.form['pw_give']
 
     # 회원가입 때와 같은 방법으로 pw를 암호화합니다.
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
@@ -205,7 +205,7 @@ def post_list():
 
 @app.route("/api/post", methods=["GET"])
 def homework_get():
-
+    request.args.get('category_')
     posts_list = list(db.post.find({}, {'_id': False}))
 
     return jsonify({'comments': posts_list})
