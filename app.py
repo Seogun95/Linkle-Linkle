@@ -186,7 +186,8 @@ def post_register():
             'desc': desc_receive,
             'image': image,
             'category': int(category_receive),
-            'reg_dt': datetime.now()
+            'reg_dt': datetime.now(),
+            'link_url': url
         }
         db.post.insert_one(doc)
 
