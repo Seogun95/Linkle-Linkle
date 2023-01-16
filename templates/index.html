@@ -34,6 +34,7 @@
     />
     <!--링크 추가된 부분-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
      <!--링크 추가된 부분-->
     <meta property="og:title" content="내 사이트의 제목" />
     <meta property="og:description" content="보고 있는 페이지의 내용 요약" />
@@ -114,6 +115,9 @@
                           <nav class="level is-mobile logM">
                               <button class="level-item button is-sparta" onclick="sign_in()">로그인</button>
                           </nav>
+                          <nav class="level is-mobile logM">
+                            <button class="level-item button is-sparta" onclick="get_nick() ">닉네임 확인</button>
+                        </nav>
                           <hr />
                           <nav class="level is-mobile logM">
                               <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">회원가입하기</button>
