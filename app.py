@@ -236,7 +236,7 @@ def post_register():
         title_receive = request.form['post_title']
         desc_receive = request.form['post_desc']
         url_receive = request.form['post_url']
-        # category_receive = request.form['post_category']
+        category_receive = request.form['post_category']
 
         url = url_receive
 
@@ -270,7 +270,7 @@ def post_register():
             'desc': desc_receive,
             'image': image,
             'category': int(category_receive),
-            'reg_dt': datetime.now(),
+            'reg_dt': 'dkei',
             'link_url': url,
             'status': 0
 
