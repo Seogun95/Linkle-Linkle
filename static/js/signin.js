@@ -1,6 +1,11 @@
-function toggle_sign_up() {
+$(document).ready(function () {
+    get_nick();
+});
+
+function toggle_sign_up(res) {
     $('#sign-up-box').toggleClass('is-hidden');
     $('.logM').toggleClass('is-hidden');
+    res == 'success' ? $('.login-page').addClass('visivility') : $('.login-page').removeClass('visivility');
 }
 
 function sign_up() {
@@ -41,7 +46,7 @@ function sign_in() {
                 // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
                 // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
                 $.cookie('mytoken', response['token']);
-
+                get_nick();
                 alert('로그인 완료!');
                 window.location.href = '/category';
             } else {
@@ -58,7 +63,11 @@ function get_nick() {
         url: '/api/nick',
         data: {},
         success: function (response) {
-            console.log(response);
+            let res = response['result'];
+            if (res == 'success') {
+                toggle_sign_up(res);
+                $('.login-btn').attr('href', '/category');
+            }
         },
     });
 }

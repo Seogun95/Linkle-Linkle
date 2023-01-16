@@ -109,6 +109,10 @@
     animation: 1s step-end infinite blink;
 }
 
+.visivility {
+    display: none;
+}
+
 /* CSS 추가된 부분 시작*/
 
 .login-page {
@@ -146,6 +150,10 @@
 
 .is-hidden-box {
     margin-top: 10px;
+}
+
+.visivility {
+    visibility: hidden;
 }
 
 /* CSS 추가된 부분 끝 */
