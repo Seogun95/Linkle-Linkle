@@ -22,9 +22,23 @@ $(document).ready(function () {
         target
             .fadeIn(300, function () {
                 $('#postPop__url').focus();
+                $('#categoryPop__url').focus();
             })
             .addClass('reveal');
         $('body').addClass('is-postPop');
+    });
+    //===========================포스팅 박스 밖 클릭 시 닫기
+    $(document).mouseup(function (e) {
+        if (target.has(e.target).length == 0) {
+            target.fadeOut(100).removeClass('reveal');
+            $('body').removeClass('is-postPop');
+        }
+    });
+
+    //===========================닫기 버튼클릭시 팝업 닫기
+    $('#close__postPop').click(function () {
+        $(this).closest('#postPop').removeClass('reveal').fadeOut(200);
+        $('body').removeClass('is-postPop');
     });
 
     //===========================포스팅 hover시 닫기 버튼 show
@@ -36,12 +50,6 @@ $(document).ready(function () {
             $('button', this).removeClass('active');
         }
     );
-});
-
-//===========================닫기 버튼클릭시 팝업 닫기
-$('#close__postPop').click(function () {
-    $(this).closest('#postPop').removeClass('reveal').fadeOut(200);
-    $('body').removeClass('is-postPop');
 });
 
 //============================로그인 버튼 눌렀을떄(JS 추가된 부분).

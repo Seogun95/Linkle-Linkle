@@ -85,6 +85,27 @@
     opacity: 1;
 }
 
+.postPop_bgimg-container > div:before {
+    content: '';
+    opacity: 0;
+    animation: 0.3s 0.3s linear fadeIn forwards;
+    position: absolute;
+    width: 70%;
+    left: 16%;
+    height: 650px;
+    background: url(https://tistory1.daumcdn.net/tistory/4462322/skin/images/pop-bg.svg) no-repeat 0%;
+    background-size: 1300px 800px;
+    z-index: -1;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .mybtns {
     display: flex;
     justify-content: center;
