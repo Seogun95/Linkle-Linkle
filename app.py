@@ -287,12 +287,12 @@ def post_list():
     category_id = int(request.args.get('category_id'))
     posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
     like_list = list(db.like.find({}, {'_id': False}))
-    for i in range(0, len(posts_list)):
-        like_total = list()
-        for j in range(0, len(like_list)):
-            if(posts_list[i]['id'] == like_list[j]['post_id']):
-                like_total.append(like_list[j])
-        posts_list[i]['likes'] = like_total
+    # for i in range(0, len(posts_list)):
+    #     like_total = list()
+    #     for j in range(0, len(like_list)):
+    #         if(posts_list[i]['id'] == like_list[j]['post_id']):
+    #             like_total.append(like_list[j])
+    #     posts_list[i]['likes'] = like_total
 
 
     return jsonify({'posts': posts_list})
