@@ -1,6 +1,5 @@
 $(document).ready(function () {
     urlPosting();
-    postCatagory();
 });
 
 // ================================= 테스트 완료
