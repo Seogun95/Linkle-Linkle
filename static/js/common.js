@@ -51,7 +51,6 @@ $('.login-btn').click(function () {
     $('.custom-navbar').toggleClass('login-nav');
     $('.container-mid').toggleClass('container-mid-max');
     $('.login-btn').toggleClass('login-btn-max');
-
     if ($('.login-page').hasClass('login-page-pop') === true) {
         $('.login-btn__text').text('로그인 창 닫기');
     } else {

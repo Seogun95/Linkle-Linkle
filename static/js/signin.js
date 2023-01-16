@@ -19,8 +19,8 @@ function sign_up() {
         success: function (response) {
             if (response['result'] == 'success') {
                 alert('회원가입이 완료되었습니다.');
-                console.log(response['result']);
-                window.location.href = '/';
+                $('#sign-up-box').addClass('is-hidden');
+                $('.logM').removeClass('is-hidden');
             } else {
                 alert(response['msg']);
             }
