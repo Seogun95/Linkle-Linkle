@@ -52,13 +52,30 @@
 }
 
 .postPop__container input,
-.form-floating .tagify {
+.postPop__container textarea {
     border-radius: 1rem;
     background: #2c2c2c;
     border: none;
     color: white;
-    margin-top: 30px;
     height: 50px;
+}
+
+.postPop__container .form-control:focus {
+    background: #4e4e4e;
+    color: white;
+    box-shadow: rgb(0 0 0 / 48%) 0 26px 30px -10px, rgb(0 0 0 / 23%) 0 16px 10px -10px;
+}
+
+.pop-help {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    margin-left: 0.5rem;
+    color: var(--brand-color);
+}
+
+.postPop__container textarea {
+    width: 100% !important;
+    border-radius: 1rem !important;
 }
 
 #postPop.reveal .postPop__container {
@@ -80,5 +97,5 @@
 
 .category-post-title {
     font-size: 20px;
-    margin-top: 20px;
+    margin: 2rem;
 }

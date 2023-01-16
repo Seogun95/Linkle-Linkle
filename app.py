@@ -24,7 +24,9 @@ SECRET_KEY = 'SPARTA'
 # 회원가입 시엔, 비밀번호를 암호화하여 DB에 저장해두는 게 좋습니다.
 # 그렇지 않으면, 개발자(=나)가 회원들의 비밀번호를 볼 수 있으니까요.^^;
 
+
 client = MongoClient('mongodb+srv://sparta:1234@cluster0.txh1xie.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
+
 db = client.linkle
 app = Flask(__name__)
 

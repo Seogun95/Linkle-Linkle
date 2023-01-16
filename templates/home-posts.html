@@ -50,17 +50,17 @@
             <div class="main">
                 <!--GET으로 보여질 부분-->
                 <div class="mycards">
-                    <div class="row row-cols-1 row-cols-md-2 g-4" id="cards-box">
+                    <div class="row row-cols-4 row-cols-md-2 g-4" id="cards-box">
                         <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
                             <div class="cards-box__container logo">
-                                <div class="cards-box__category"><span>카테고리</span><button class="cards-box__closeBtn"></button></div>
                                 <div class="cards-box__card" style="width: 18rem">
                                     <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
                                         <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
 
                                         <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
                                     </a>
-                                    <p class="cards-box__body-tag">#유튜브</p>
+                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
+                                    <p class="cards-box__body-user">by. 작성자</p>
                                 </div>
                             </div>
                         </div>
@@ -71,18 +71,19 @@
 
         <div id="postPop" class="closeBtn_C" style="display: none">
             <div class="postPop__container" id="post-box">
-                <div class="form-floating mb-3 postPop__form">
-                    <input id="postPop__url" type="text" class="form-control" placeholder="북마크할 웹사이트 주소를 입력해주세요" />
-                    <label>북마크할 웹사이트 주소를 입력해주세요</label>
+                <h3 class="stag-cloud__small text-center text-light category-post-title">포스팅할 사이트를 넣어주고 사람들에게 공유해보세요!</h3>
+                <div class="mb-3">
+                    <p class="pop-help">포스팅할 링크 URL을 작성해주세요</p>
+                    <input id="postPop__url" type="text" class="form-control" placeholder="포스팅할 링크 URL을 넣어주세요." />
+                </div>
+                <div class="mb-3">
+                    <p class="pop-help">포스팅에 저장할 제목을 넣어주세요.</p>
+                    <input id="postPop__title" type="text" class="form-control" placeholder="포스팅 제목을 입력해주세요." />
                 </div>
 
-                <div class="input-group mb-3">
-                    <input id="category" type="text" class="form-control" placeholder="포스트에 넣어질 타이틀을 작성해주세요" />
-                </div>
-
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="간단한 설명글" id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">간단한 설명글</label>
+                <div class="mb-3">
+                    <p class="pop-help">포스팅에 메모하고 싶은 코멘트를 남겨보세요.</p>
+                    <textarea class="form-control" placeholder="포스팅에 메모하고 싶은 코멘트를 남겨보세요." id="postPop__titlecomments" style="height: 100px"></textarea>
                 </div>
 
                 <div class="mybtns">
@@ -92,7 +93,6 @@
 
                 <div class="tag-cloud__info-meta d-flex justify-content-end me-3">
                     <img src="" />
-                    <span class="stag-cloud__small text-light flex-row-reverse">북마크할 웹사이트 링크를 등록해보세요!</span>
                 </div>
             </div>
         </div>
