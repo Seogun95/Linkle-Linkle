@@ -1,13 +1,16 @@
-#대욱 app.py
+# 대욱 app.py
+import hashlib
+import datetime
+import jwt
+import certifi
+from pymongo import MongoClient
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import requests
 from bs4 import BeautifulSoup
 app = Flask(__name__)
 
-from pymongo import MongoClient
-import certifi
 
-ca=certifi.where()
+ca = certifi.where()
 
 
 # JWT 토큰을 만들 때 필요한 비밀문자열입니다. 아무거나 입력해도 괜찮습니다.
@@ -15,19 +18,16 @@ ca=certifi.where()
 SECRET_KEY = 'SPARTA'
 
 # JWT 패키지를 사용합니다. (설치해야할 패키지 이름: PyJWT)
-import jwt
 
 # 토큰에 만료시간을 줘야하기 때문에, datetime 모듈도 사용합니다.
-import datetime
 
 # 회원가입 시엔, 비밀번호를 암호화하여 DB에 저장해두는 게 좋습니다.
 # 그렇지 않으면, 개발자(=나)가 회원들의 비밀번호를 볼 수 있으니까요.^^;
-import hashlib
 
-client = MongoClient('mongodb+srv://sparta:1234@cluster0.txh1xie.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient(
+    'mongodb+srv://sparta:1234@cluster0.txh1xie.mongodb.net/?retryWrites=true&w=majority')
 db = client.linkle
 app = Flask(__name__)
-
 
 
 @app.route('/')
@@ -38,9 +38,10 @@ def home():
         user_info = db.user.find_one({"id": payload['id']})
         return render_template('index.html', user_id=user_info["id"])
     except jwt.ExpiredSignatureError:
-        return jsonify({'msg' : '로그인 시간이 만료되었습니다.'})
+        return jsonify({'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
-        return jsonify({'msg' : '로그인 정보가 존재하지 않습니다.'})
+        return jsonify({'msg': '로그인 정보가 존재하지 않습니다.'})
+
 
 @app.route('/login')
 def login():
@@ -51,7 +52,6 @@ def login():
 @app.route('/register')
 def register():
     return render_template('register.html')
-
 
 
 @app.route('/api/register', methods=['POST'])
@@ -97,6 +97,7 @@ def api_login():
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
+
 @app.route('/category', methods=['POST'])
 def category_register():
     token_receive = request.cookies.get('mytoken')
@@ -108,7 +109,6 @@ def category_register():
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
-
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
@@ -117,7 +117,7 @@ def category_register():
 
         doc = {
             'id': count,
-            'author' : userinfo['id'],
+            'author': userinfo['id'],
             'name': category_receive
         }
         db.category.insert_one(doc)
@@ -129,11 +129,13 @@ def category_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+
 @app.route('/categories', methods=['GET'])
 def category_list():
     category_list = list(db.category.find({}, {'_id': False}))
 
     return jsonify({'categories': category_list})
+
 
 @app.route('/post', methods=['POST'])
 def post_register():
@@ -157,12 +159,9 @@ def post_register():
         image = soup.select_one('meta[property="og:image"]')['content']
         desc = soup.select_one('meta[property="og:description"]')['content']
 
-
-
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-
 
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
@@ -172,11 +171,11 @@ def post_register():
 
         doc = {
             'id': count,
-            'author' : userinfo['id'],
+            'author': userinfo['id'],
             'title': title_receive,
-            'desc' : desc_receive,
-            'image' : image,
-            'category' : int(category_receive)
+            'desc': desc_receive,
+            'image': image,
+            'category': int(category_receive)
         }
         db.post.insert_one(doc)
 
@@ -186,6 +185,7 @@ def post_register():
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
 
 @app.route("/homework", methods=["GET"])
 def homework_get():
