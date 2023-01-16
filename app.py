@@ -136,9 +136,9 @@ def category_register():
         return jsonify({'result': 'success'})
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 @app.route('/api/comment', methods=['POST'])
 def comment_register():
@@ -170,9 +170,9 @@ def comment_register():
         return jsonify({'result': 'success'})
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 @app.route('/api/categories', methods=['GET'])
 def category_list():
@@ -228,19 +228,12 @@ def post_register():
         return jsonify({'result': 'success'})
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 
 @app.route("/api/posts", methods=["GET"])
-def post_list():
-    category_id = int(request.args.get('category_id'))
-    posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
-
-    return jsonify({'posts': posts_list})
-
-@app.route("/api/comment", methods=["GET"])
 def post_list():
     category_id = int(request.args.get('category_id'))
     posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
