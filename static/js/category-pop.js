@@ -72,7 +72,7 @@ function categoryPosting() {
         url: '/api/categories',
         data: {},
         success: function (response) {
-            $('#category-cards-box').empty();
+            $('.category__cards-box').empty();
             let rows = response['categories'];
             for (let i = 0; i < rows.length; i++) {
                 let category_title = rows[i]['name'];
@@ -90,7 +90,7 @@ function categoryPosting() {
                     </div>
                 </div>
             </div>`;
-                $('#category-cards-box').append(temp_html);
+                $('.category__cards-box').append(temp_html);
             }
         },
     });
