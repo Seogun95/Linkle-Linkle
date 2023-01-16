@@ -43,7 +43,7 @@ body {
     line-height: 1.5;
     color: #212529;
     background-color: #212529;
-    background-image: linear-gradient(0deg, rgb(0 0 0 / 83%), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80);
+    background-image: linear-gradient(0deg, rgb(0 0 0 / 83%), rgba(0, 0, 0, 0.7)), url(/static/img/3.jpg);
     background-attachment: fixed;
     background-size: cover;
     z-index: -1;
