@@ -248,6 +248,11 @@ def post_register():
 
         image = soup.select_one('meta[property="og:image"]')['content']
 
+        try:
+            image = soup.select_one('meta[property="og:image"]')['content']
+        except TypeError:
+            image = 'no og image tag'
+
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
