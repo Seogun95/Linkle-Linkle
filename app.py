@@ -97,7 +97,7 @@ def api_login():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=18000)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -195,6 +195,32 @@ def comment_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+@app.route('/api/like', methods=['POST'])
+def like():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        post_id = request.form['post_id']
+
+        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        doc = {
+            'post_id': post_id,
+            'author': userinfo['id'],
+        }
+        like = db.like.find_one({doc})
+        if like is None:
+            db.like.insert_one(doc)
+        else:
+            db.like.delete_one({doc})
+
+        return jsonify({'result': 'success'})
+    except jwt.ExpiredSignatureError:
+        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
+
 @app.route('/api/categories', methods=['GET'])
 def category_list():
     category_list = list(db.category.find({}, {'_id': False}))
@@ -220,9 +246,7 @@ def post_register():
 
         soup = BeautifulSoup(data.text, 'html.parser')
 
-        title = soup.select_one('meta[property="og:title"]')['content']
         image = soup.select_one('meta[property="og:image"]')['content']
-        desc = soup.select_one('meta[property="og:description"]')['content']
 
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
@@ -260,6 +284,14 @@ def post_register():
 def post_list():
     category_id = int(request.args.get('category_id'))
     posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
+    like_list = list(db.like.find({}, {'_id': False}))
+    for i in range(0, len(posts_list)):
+        like_total = list()
+        for j in range(0, len(like_list)):
+            if(posts_list[i]['id'] == like_list[j]['post_id']):
+                like_total.append(like_list[j])
+        posts_list[i]['likes'] = like_total
+
 
     return jsonify({'posts': posts_list})
 
@@ -267,9 +299,10 @@ def post_list():
 def get_post():
     post_id = int(request.args.get('post_id'))
     post = db.users.find_one({'id': post_id})
+    like_list = list(db.like.find({'post_id': post_id}, {'_id': False}))
     comment_list = list(db.comment.find({'post_id': post_id}, {'_id': False}))
 
-    return jsonify({'post': post, 'comments': comment_list})
+    return jsonify({'post': post, 'comments': comment_list, 'likes' : like_list})
 
 
 if __name__ == '__main__':
