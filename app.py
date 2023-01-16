@@ -236,17 +236,17 @@ def post_register():
         title_receive = request.form['post_title']
         desc_receive = request.form['post_desc']
         url_receive = request.form['post_url']
-        # category_receive = request.form['post_category']
+        category_receive = request.form['post_category']
 
         url = url_receive
+        image = url
+        # headers = {
+        #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+        # data = requests.get(url, headers=headers)
 
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-        data = requests.get(url, headers=headers)
-
-        soup = BeautifulSoup(data.text, 'html.parser')
-
-        image = soup.select_one('meta[property="og:image"]')['content']
+        # soup = BeautifulSoup(data.text, 'html.parser')
+        #
+        # image = soup.select_one('meta[property="og:image"]')['content']
 
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
