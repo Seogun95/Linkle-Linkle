@@ -240,7 +240,15 @@ def post_register():
 
         url = url_receive
 
-        image = 'default'
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+        data = requests.get(url, headers=headers)
+
+        soup = BeautifulSoup(data.text, 'html.parser')
+
+        title = soup.select_one('meta[property="og:title"]')['content']
+        image = soup.select_one('meta[property="og:image"]')['content']
+        desc = soup.select_one('meta[property="og:description"]')['content']
 
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
