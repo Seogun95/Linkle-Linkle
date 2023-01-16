@@ -1,4 +1,3 @@
-# 대욱 app.py
 import hashlib
 import datetime
 import jwt
