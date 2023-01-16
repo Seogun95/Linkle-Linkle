@@ -1,0 +1,5 @@
+#body__index,
+#body__login,
+.is-postPop {
+    overflow: hidden;
+}
