@@ -114,6 +114,9 @@
 }
 
 /* CSS 추가된 부분 시작*/
+.login-page__box {
+    background: #6a6a6a54;
+}
 
 .login-page {
     transform: translateX(100%);
@@ -124,7 +127,8 @@
     z-index: 1;
     width: 50%;
     transition: 0.3s ease;
-    background: white;
+    background: #85858536;
+    backdrop-filter: blur(5px);
 }
 
 .login-page.login-page-pop {

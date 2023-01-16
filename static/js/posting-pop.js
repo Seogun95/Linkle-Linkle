@@ -44,19 +44,24 @@ function urlPosting() {
                 let user_nickname = rows[i]['author'];
 
                 let temp_html = `
-                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="${url}">
-                                        <img src="${img}" class="cards-box__img" alt="bookimage" />
 
-                                        <p class="cards-box__body-title" id="${category_title}">${title}</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">${comments}</p>
-                                    <p class="cards-box__body-user">by. ${user_nickname}</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
+                <div class="cards-box__container logo">
+                    <div class="card-box__like-comment-container">
+                        <button class="btn like"></button>
+                    </div>
+                    <div class="cards-box__card" style="width: 18rem">
+                        <a href="${url}">
+                            <img src="${img}" class="cards-box__img" alt="bookimage" />
+
+                            <p class="cards-box__body-title" id="${category_title}">${title}</p>
+                        </a>
+                        <p class="cards-box__body-comment">${comments}</p>
+                        <p class="cards-box__body-user">by. ${user_nickname}</p>
+                    </div>
+                </div>
+            </div>
+
                `;
                 $('.cards-box').append(temp_html);
             }
