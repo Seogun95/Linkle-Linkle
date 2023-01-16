@@ -87,7 +87,7 @@
     color: white;
     font-weight: bold;
     border-radius: 1rem;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     width: fit-content;
     position: relative;
     backdrop-filter: blur(5px);
@@ -95,8 +95,9 @@
 .cards-box__cateTitle:before {
     content: '';
     position: absolute;
-    left: 43%;
-    top: 99%;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0%);
     width: 0;
     z-index: 1;
     border-top: 10px solid transparent;
