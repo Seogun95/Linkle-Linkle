@@ -3,6 +3,7 @@
 @import '/static/css/header.css';
 @import '/static/css/posts.css';
 @import '/static/css/popup.css';
+@import '/static/css/category.css';
 
 :root {
     --brand-color: rgb(92 193 255);
