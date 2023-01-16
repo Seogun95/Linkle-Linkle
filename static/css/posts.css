@@ -37,6 +37,10 @@
     border-radius: 1rem;
     background-color: transparent;
 }
+.category__cards-box > .col:hover {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 
 #cards-box > .col:hover {
     background-color: #393939;
@@ -63,6 +67,31 @@
     color: white;
     display: flex;
     align-items: center;
+}
+.cards-box__cate-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cards-box__cateTitle {
+    background: var(--brand-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    width: fit-content;
+    position: relative;
+}
+.cards-box__cateTitle:before {
+    content: '';
+    position: absolute;
+    left: 43%;
+    top: 100%;
+    width: 0;
+    border-top: 10px solid var(--brand-color);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    z-index: 1;
 }
 
 .cards-box__body-title {
