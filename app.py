@@ -156,6 +156,40 @@ def category_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+@app.route('/api/comment', methods=['POST'])
+def comment_register():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        post_id = request.form['post_id']
+        comment_receive = request.form['comment']
+
+
+        # token을 시크릿키로 디코딩합니다.
+        # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+        # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
+        # 여기에선 그 예로 닉네임을 보내주겠습니다.
+        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        category_list = list(db.category.find({}, {'_id': False}))
+        count = len(category_list) + 1
+
+        doc = {
+            'id': count,
+            'post_id': post_id,
+            'author': userinfo['id'],
+            'comment': comment_receive,
+            'reg_dt': datetime.now()
+        }
+        db.comment.insert_one(doc)
+
+        return jsonify({'result': 'success'})
+    except jwt.ExpiredSignatureError:
+        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
 @app.route('/api/categories', methods=['GET'])
 def category_list():
     category_list = list(db.category.find({}, {'_id': False}))
@@ -202,7 +236,8 @@ def post_register():
             'desc': desc_receive,
             'image': image,
             'category': int(category_receive),
-            'reg_dt': datetime.now()
+            'reg_dt': datetime.now(),
+            'link_url': url
         }
         db.post.insert_one(doc)
 
@@ -216,17 +251,18 @@ def post_register():
 
 @app.route("/api/posts", methods=["GET"])
 def post_list():
-
-    posts_list = list(db.post.find({}, {'_id': False}))
+    category_id = int(request.args.get('category_id'))
+    posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
 
     return jsonify({'posts': posts_list})
 
 @app.route("/api/post", methods=["GET"])
-def homework_get():
-    request.args.get('category_')
-    posts_list = list(db.post.find({}, {'_id': False}))
+def get_post():
+    post_id = int(request.args.get('post_id'))
+    post = db.users.find_one({'id': post_id})
+    comment_list = list(db.comment.find({'post_id': post_id}, {'_id': False}))
 
-    return jsonify({'comments': posts_list})
+    return jsonify({'post': post, 'comments': comment_list})
 
 
 if __name__ == '__main__':
