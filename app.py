@@ -53,6 +53,10 @@ def login():
 def register():
     return render_template('register.html')
 
+@app.route('/category')
+def register():
+    return render_template('home-category.html')
+
 
 @app.route('/api/register', methods=['POST'])
 def api_register():
@@ -135,17 +139,16 @@ def category_register():
 
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
-        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        userinfo = None
         category_list = list(db.category.find({}, {'_id': False}))
         count = len(category_list) + 1
 
         doc = {
             'id': count,
-            'author': userinfo['id'],
+            'author': userinfo,
             'img' : img_receive,
             'name': category_receive
         }
