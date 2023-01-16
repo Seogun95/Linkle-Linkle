@@ -39,10 +39,10 @@ function category() {
 
     $.ajax({
         type: 'POST',
-        url: '/category',
+        url: 'api/category',
         data: { category_name: category_name, category_img_url: img_url },
         success: function (response) {
-            alert(response);
+            console.log(response);
         },
     });
 }
