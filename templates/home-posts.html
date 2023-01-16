@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>BookMark Saver 메인</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!--==========FONT Awesome PRO 5==========-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
+        <!-- AOS 라이브러리-->
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet" />
+
+        <meta property="og:title" content="내 사이트의 제목" />
+        <meta property="og:description" content="보고 있는 페이지의 내용 요약" />
+        <meta property="og:image" content="이미지URL" />
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <!--postpop style sheet 추가-->
+        <link rel="stylesheet" href="../static/css/postpop.css" />
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="40">
+        <!-- Page Navbar -->
+        <nav class="custom-navbar">
+            <div class="container">
+                <a class="logo" href="/home-posts">링클 링클</a>
+                <ul class="nav">
+                    <li class="item">
+                        <button id="logout_btn" class="link">로그아웃</button>
+                    </li>
+                </ul>
+                <div class="nav__posting text-light fs-4">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+                <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <!-- End of Page Navbar -->
+        <section id="main__section">
+            <div class="main">
+                <!--GET으로 보여질 부분-->
+                <div class="mycards">
+                    <div class="row row-cols-1 row-cols-md-2 g-4" id="cards-box">
+                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
+                            <div class="cards-box__container logo">
+                                <div class="cards-box__category"><span>카테고리</span><button class="cards-box__closeBtn"></button></div>
+                                <div class="cards-box__card" style="width: 18rem">
+                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
+                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
+
+                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
+                                    </a>
+                                    <p class="cards-box__body-tag">#유튜브</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="postPop" class="closeBtn_C" style="display: none">
+            <div class="postPop__container" id="post-box">
+                <div class="form-floating mb-3 postPop__form">
+                    <input id="postPop__url" type="text" class="form-control" placeholder="북마크할 웹사이트 주소를 입력해주세요" />
+                    <label>북마크할 웹사이트 주소를 입력해주세요</label>
+                </div>
+
+                <div class="input-group mb-3">
+                    <input id="category" type="text" class="form-control" placeholder="포스트에 넣어질 타이틀을 작성해주세요" />
+                </div>
+
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="간단한 설명글" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">간단한 설명글</label>
+                </div>
+
+                <div class="mybtns">
+                    <button type="button" class="btn btn-light" id="bookmark-post">등록</button>
+                    <button type="button" class="btn btn-outline-light" id="close__postPop">닫기</button>
+                </div>
+
+                <div class="tag-cloud__info-meta d-flex justify-content-end me-3">
+                    <img src="" />
+                    <span class="stag-cloud__small text-light flex-row-reverse">북마크할 웹사이트 링크를 등록해보세요!</span>
+                </div>
+            </div>
+        </div>
+        <!-- AOS 스크립트 -->
+        <script>
+            AOS.init();
+        </script>
+        <script src="../static/js/common.js"></script>
+        <script src="../static/js/main.js"></script>
+        <script src="../static/js/signout.js"></script>
+    </body>
+</html>

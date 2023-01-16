@@ -1,0 +1,67 @@
+.nav__posting {
+    cursor: pointer;
+}
+
+#postPop {
+    position: fixed;
+}
+
+#postPop.reveal {
+    z-index: 9999;
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+}
+
+#postPop {
+    display: none;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    padding: 63px 40px 63px;
+    pointer-events: none;
+    background-color: #1e1e1ea1;
+    backdrop-filter: blur(5px);
+}
+
+#postPop .postPop__container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -180%);
+    -webkit-transform: translate(-50%, -180%);
+    transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 0.2s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    max-width: 900px;
+    width: 80%;
+    flex-direction: column;
+    border-radius: 5px 5px 10px 10px;
+    pointer-events: auto;
+    background-color: #181818;
+    background-clip: padding-box;
+    border: 1px solid rgb(138 138 138 / 62%);
+    box-shadow: rgb(0 0 0 / 48%) 0 26px 30px -10px, rgb(0 0 0 / 23%) 0 16px 10px -10px;
+    padding: 0rem 0rem 1rem;
+    opacity: 0;
+}
+.postPop__container div:nth-child(n + 2):nth-child(-n + 4) {
+    padding: 0rem 1rem;
+}
+
+.postPop__container input,
+.form-floating .tagify {
+    border-radius: 1rem;
+    background: #2c2c2c;
+    border: none;
+    color: white;
+}
+
+#postPop.reveal .postPop__container {
+    transform: translate(-50%, -70%);
+    -webkit-transform: translate(-50%, -70%);
+    transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 0.8s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    opacity: 1;
+}
