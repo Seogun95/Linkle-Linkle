@@ -2,7 +2,7 @@
     position: relative;
     height: 100vh;
     min-height: 600px;
-    max-width: 1500px;
+    /* max-width: 1500px */
     width: 100%;
     margin: 0 auto;
     display: -webkit-box;
@@ -60,6 +60,24 @@
     flex-direction: column;
 }
 
+/* CSS 추가된 부분 시작*/
+
+.login-btn-max {
+    max-width: 20%;
+}
+
+.container-mid-max {
+    position: absolute;
+    left: 10%;
+    top: 33%;
+}
+
+.none {
+    display: none;
+}
+
+/* CSS 추가된 부분 끝 */
+
 .img__desc {
     margin-top: 1rem;
     text-align: center;
@@ -90,6 +108,39 @@
 .showAnim.typing::after {
     animation: 1s step-end infinite blink;
 }
+
+/* CSS 추가된 부분 시작*/
+
+.login-page {
+    width: 0%;
+    height: 0%;
+    visibility: hidden;
+}
+
+.login-page-pop {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    visibility: visible;
+}
+
+.login-page-input {
+    border: 1px solid red;
+    height: 100%;
+}
+.login-page-input-box {
+    border: 1px solid black;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CSS 추가된 부분 끝 */
 
 #typingArea {
     display: flex;

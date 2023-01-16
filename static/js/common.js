@@ -43,3 +43,12 @@ $('#close__postPop').click(function () {
     $(this).closest('#postPop').removeClass('reveal').fadeOut(200);
     $('body').removeClass('is-postPop');
 });
+
+//============================로그인 버튼 눌렀을떄(JS 추가된 부분).
+$('.login-btn').click(function () {
+    $('#header-img').toggleClass('none');
+    $('.login-page').toggleClass('login-page-pop');
+    $('.custom-navbar').toggleClass('login-nav');
+    $('.container-mid').toggleClass('container-mid-max');
+    $('.login-btn').toggleClass('login-btn-max');
+});
