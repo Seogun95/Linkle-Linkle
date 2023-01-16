@@ -11,7 +11,7 @@
 .mycards {
     display: flex;
     align-items: center;
-    padding: 5rem 2rem;
+    padding: 2rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -35,6 +35,7 @@
     transition: all 0.2s linear;
     display: block;
     border-radius: 1rem;
+    padding: 1rem;
     background-color: transparent;
 }
 .category__cards-box > .col:hover {
@@ -44,12 +45,19 @@
 
 #cards-box > .col:hover {
     background-color: #393939;
-    transform: scale(1.05);
+    transform: scale(1.06);
     box-shadow: rgb(0 0 0 / 68%) 0 26px 30px -10px, rgb(0 0 0 / 71%) 0 16px 10px -10px;
 }
 #cards-box > .col:hover .cards-box__img {
     transform: scale(1.03) rotate(0.7deg);
     filter: unset;
+}
+
+#cards-box > .col:hover .cards-box__cateTitle {
+    background-color: var(--bubble-arrow-color);
+}
+#cards-box > .col:hover .cards-box__cateTitle:before {
+    border-top: 10px solid var(--bubble-arrow-color);
 }
 
 .cards-box__card {
@@ -72,26 +80,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1rem;
 }
 .cards-box__cateTitle {
-    background: var(--brand-color);
+    transition: 0.3s all ease;
     color: white;
     font-weight: bold;
     border-radius: 1rem;
     padding: 0.5rem;
     width: fit-content;
     position: relative;
+    backdrop-filter: blur(5px);
 }
 .cards-box__cateTitle:before {
     content: '';
     position: absolute;
     left: 43%;
-    top: 100%;
+    top: 99%;
     width: 0;
-    border-top: 10px solid var(--brand-color);
+    z-index: 1;
+    border-top: 10px solid transparent;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    z-index: 1;
+    transition: 0.3s ease;
 }
 
 .cards-box__body-title {
@@ -113,6 +124,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
+}
+.cards-box__body-user {
+    margin-bottom: 0;
 }
 .cards-box__body-comment,
 .cards-box__body-user {
@@ -155,7 +169,33 @@
 .cards-box__closeBtn:hover:after {
     animation: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both rotate-90-cw;
 }
+.cards-box__container {
+    position: relative;
+}
+.card-box__like-comment-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+.card-box__like-comment-container button {
+    padding: 0.3rem;
+}
+.card-box__like-comment-container .like:before,
+.card-box__like-comment-container .comment:before {
+    font-size: 1.5rem;
+}
+.like.btn:hover:before {
+    font-weight: 900;
+}
+.card-box__like-comment-container .like:before {
+    content: '\f598';
+    color: #d22626;
+}
 
+.card-box__like-comment-container .comment:before {
+    content: '\f27a';
+}
 @keyframes rotate-90-cw {
     0% {
         transform: rotate(0);

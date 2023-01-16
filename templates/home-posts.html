@@ -6,20 +6,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>BookMark Saver 메인</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-        />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!--==========FONT Awesome PRO 5==========-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
         <!-- AOS 라이브러리-->
@@ -59,91 +50,16 @@
             <div class="main">
                 <!--GET으로 보여질 부분-->
                 <div class="mycards">
-                    <div class="row row-cols-4 row-cols-md-2 g-4 post__cards-box" id="cards-box">
-                        <!--              <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
-                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
-
-                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
-                                    <p class="cards-box__body-user">by. 작성자</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
-                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
-
-                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
-                                    <p class="cards-box__body-user">by. 작성자</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
-                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
-
-                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
-                                    <p class="cards-box__body-user">by. 작성자</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
-                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
-
-                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
-                                    <p class="cards-box__body-user">by. 작성자</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
-                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
-
-                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
-                                    <p class="cards-box__body-user">by. 작성자</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                            <div class="cards-box__container logo">
-                                <div class="cards-box__card" style="width: 18rem">
-                                    <a href="https://www.youtube.com/watch?v=GmxPT-P331s&t=1s">
-                                        <img src="https://www.youtube.com/img/desktop/yt_1200.png" class="cards-box__img" alt="bookimage" />
-
-                                        <p class="cards-box__body-title">이곳에 타이틀이 들어옵니다.</p>
-                                    </a>
-                                    <p class="cards-box__body-comment">사용자가 작성한 코멘트가 나타납니다.</p>
-                                    <p class="cards-box__body-user">by. 작성자</p>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
+                    <div class="row row-cols-4 row-cols-md-2 g-4 post__cards-box" id="cards-box"></div>
                 </div>
             </div>
         </section>
 
+        <!-- start of post pop-up -->
         <div id="postPop" class="closeBtn_C" style="display: none">
+            <div class="postPop_bgimg-container" style="position: relative">
+                <div></div>
+            </div>
             <div class="postPop__container" id="post-box">
                 <h3 class="stag-cloud__small text-center text-light category-post-title">포스팅할 사이트를 넣어주고 사람들에게 공유해보세요!</h3>
                 <div class="mb-3">
