@@ -239,15 +239,16 @@ def post_register():
         category_receive = request.form['post_category']
 
         url = url_receive
-
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-        data = requests.get(url, headers=headers)
+        image = url
+        # headers = {
+        #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+        # data = requests.get(url, headers=headers)
 
         # soup = BeautifulSoup(data.text, 'html.parser')
-        
+        #
+        # image = soup.select_one('meta[property="og:image"]')['content']
 
-
+        # soup = BeautifulSoup(data.text, 'html.parser')
 
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
@@ -266,7 +267,7 @@ def post_register():
             'desc': desc_receive,
             'image': image,
             'category': int(category_receive),
-            'reg_dt': datetime.now(),
+            'reg_dt': 'now',
             'link_url': url,
             'status': 0
 
