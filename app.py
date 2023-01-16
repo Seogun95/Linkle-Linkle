@@ -104,56 +104,58 @@ def api_login():
 
 @app.route('/category', methods=['POST'])
 def category_register():
-    token_receive = request.cookies.get('mytoken')
+    # token_receive = request.cookies.get('mytoken')
+    category_receive = request.form['category_name']
+    img_receive = request.form['category_img_url']
+    #
+         # token을 시크릿키로 디코딩합니다.
+         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
+    #     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    #
+    #     # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
+    #     # 여기에선 그 예로 닉네임을 보내주겠습니다.
+    #     userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+    category_list = list(db.category.find({}, {'_id': False}))
+    count = len(category_list) + 1
+    #
+    doc = {
+         'id': count,
+    #         'author': userinfo['id'],
+         'img' : img_receive,
+         'name': category_receive
+    }
+    db.category.insert_one(doc)
+    #
+    return jsonify({'result': 'success'})
 
-    try:
-        category_receive = request.form['category_name']
-        img_receive = request.form['category_img_url']
-
-        # token을 시크릿키로 디코딩합니다.
-        # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-
-        # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
-        # 여기에선 그 예로 닉네임을 보내주겠습니다.
-        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
-        category_list = list(db.category.find({}, {'_id': False}))
-        count = len(category_list) + 1
-
-        doc = {
-            'id': count,
-            'author': userinfo['id'],
-            'img' : img_receive,
-            'name': category_receive
-        }
-        db.category.insert_one(doc)
-
-        return jsonify({'result': 'success'})
-    except jwt.ExpiredSignatureError:
-        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
-        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
-    except jwt.exceptions.DecodeError:
-        # return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
-        category_receive = request.form['category_name']
-        img_receive = request.form['category_img_url']
-
-        # token을 시크릿키로 디코딩합니다.
-        # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
-
-        # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
-        # 여기에선 그 예로 닉네임을 보내주겠습니다.
-        userinfo = None
-        category_list = list(db.category.find({}, {'_id': False}))
-        count = len(category_list) + 1
-
-        doc = {
-            'id': count,
-            'author': userinfo,
-            'img' : img_receive,
-            'name': category_receive
-        }
-        db.category.insert_one(doc)
-        return jsonify({'result': 'success'})
+    # try:
+    #     category_receive = request.form['category_name']
+    #     img_receive = request.form['category_img_url']
+    #
+    #     # token을 시크릿키로 디코딩합니다.
+    #     # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
+    #     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    #
+    #     # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
+    #     # 여기에선 그 예로 닉네임을 보내주겠습니다.
+    #     userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+    #     category_list = list(db.category.find({}, {'_id': False}))
+    #     count = len(category_list) + 1
+    #
+    #     doc = {
+    #         'id': count,
+    #         'author': userinfo['id'],
+    #         'img' : img_receive,
+    #         'name': category_receive
+    #     }
+    #     db.category.insert_one(doc)
+    #
+    #     return jsonify({'result': 'success'})
+    # except jwt.ExpiredSignatureError:
+    #     # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+    #     return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    # except jwt.exceptions.DecodeError:
+    #     return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 @app.route('/categories', methods=['GET'])
 def category_list():
