@@ -104,7 +104,7 @@ def api_login():
 
 @app.route('/category', methods=['POST'])
 def category_register():
-    # token_receive = request.cookies.get('mytoken')
+
     category_receive = request.form['category_name']
     img_receive = request.form['category_img_url']
     #
@@ -127,7 +127,8 @@ def category_register():
     db.category.insert_one(doc)
     #
     return jsonify({'result': 'success'})
-
+    #여기까지 테스트
+    # token_receive = request.cookies.get('mytoken')
     # try:
     #     category_receive = request.form['category_name']
     #     img_receive = request.form['category_img_url']
