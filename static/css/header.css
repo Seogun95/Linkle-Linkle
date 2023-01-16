@@ -63,7 +63,7 @@
 /* CSS 추가된 부분 시작*/
 
 .login-btn-max {
-    max-width: 20%;
+    max-width: 50%;
 }
 
 .container-mid-max {
@@ -138,6 +138,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login-container {
+    margin-top: 35%;
+}
+
+.is-hidden-box {
+    margin-top: 10px;
 }
 
 /* CSS 추가된 부분 끝 */
