@@ -63,7 +63,7 @@ function urlPosting() {
             </div>
 
                `;
-                $('.cards-box').append(temp_html);
+                $('.post__cards-box').append(temp_html);
             }
         },
     });
