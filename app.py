@@ -145,7 +145,8 @@ def category_register():
             'id': count,
             'author': userinfo['id'],
             'img' : img_receive,
-            'name': category_receive
+            'name': category_receive,
+            'status': 0
         }
         db.category.insert_one(doc)
 
@@ -237,7 +238,9 @@ def post_register():
             'image': image,
             'category': int(category_receive),
             'reg_dt': datetime.now(),
-            'link_url': url
+            'link_url': url,
+            'status': 0
+
         }
         db.post.insert_one(doc)
 
