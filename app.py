@@ -236,7 +236,7 @@ def post_register():
         title_receive = request.form['post_title']
         desc_receive = request.form['post_desc']
         url_receive = request.form['post_url']
-        # category_receive = request.form['post_category']
+        category_receive = request.form['post_category']
 
         url = url_receive
 
@@ -247,7 +247,8 @@ def post_register():
         soup = BeautifulSoup(data.text, 'html.parser')
 
         image = soup.select_one('meta[property="og:image"]')['content']
-
+        if image is None:
+            image = 'no og image tag'
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
