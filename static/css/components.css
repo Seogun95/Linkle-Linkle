@@ -3,3 +3,52 @@
 .is-postPop {
     overflow: hidden;
 }
+
+.main__logo {
+    width: 20%;
+    margin: 6rem auto 0;
+}
+.main__logo path {
+    transition: transform 0.5s;
+    filter: drop-shadow(5px 3px 5px black);
+}
+.main__logo-text1 {
+    fill: #fff;
+}
+.main__logo-text2 {
+    fill: var(--brand-color);
+}
+
+.main__logo-text2 path {
+    transition: transform 0.5s;
+    animation: text 2s ease-in 5;
+    transform: translatez(0);
+}
+
+.main__logo-text2 > path:nth-child(1n) {
+    animation-delay: 310ms;
+}
+.main__logo-text2 > path:nth-child(2n) {
+    animation-delay: 370ms;
+}
+.main__logo-text2 > path:nth-child(3n) {
+    animation-delay: 430ms;
+}
+.main__logo-text2 > path:nth-child(4n) {
+    animation-delay: 490ms;
+}
+
+@keyframes text {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    30% {
+        transform: translate3d(0, 0, 0);
+    }
+    45% {
+        transform: translate3d(0, 0.4rem, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
