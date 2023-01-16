@@ -239,13 +239,6 @@ def post_list():
 
     return jsonify({'posts': posts_list})
 
-@app.route("/api/comment", methods=["GET"])
-def post_list():
-    category_id = int(request.args.get('category_id'))
-    posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
-
-    return jsonify({'posts': posts_list})
-
 @app.route("/api/post", methods=["GET"])
 def get_post():
     post_id = int(request.args.get('post_id'))
