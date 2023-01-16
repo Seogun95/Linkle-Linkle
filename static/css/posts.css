@@ -1,5 +1,5 @@
 #main__section {
-    margin-top: 10rem;
+    margin-top: 3rem;
 }
 
 .main {
@@ -7,24 +7,18 @@
     height: 100%;
     margin-left: calc(-50vw + 50%);
     position: relative;
-    background: #000000a3;
-    backdrop-filter: blur(5px);
 }
 .mycards {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 0 auto;
     padding: 5rem 2rem;
     max-width: 1400px;
-    height: auto;
 }
 .mycards > .row {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     grid-gap: 1rem;
-    margin: 0 auto;
 }
 @media (max-width: 1400px) {
     .mycards > .row {
@@ -79,10 +73,23 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     height: 60px;
+    display: flex;
+    align-items: center;
 }
-.cards-box__body-tag {
-    font-size: 1rem;
+
+.cards-box__body-comment {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+}
+.cards-box__body-comment,
+.cards-box__body-user {
     color: #9a9a9a;
+}
+.cards-box__body-user {
+    font-size: 0.8rem;
 }
 
 .cards-box__img {
