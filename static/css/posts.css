@@ -223,6 +223,10 @@
 .remove-btn-rebtn:hover {
     color: red;
 }
+
+.like__num {
+    color: blue;
+}
 @keyframes rotate-90-cw {
     0% {
         transform: rotate(0);

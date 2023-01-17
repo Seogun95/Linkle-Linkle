@@ -34,6 +34,8 @@ function urlPosting() {
         data: {},
         success: function (response) {
             let rows = response['posts'];
+            let like = response['like_list'];
+            let like_num = like.length;
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
@@ -51,7 +53,8 @@ function urlPosting() {
                 </div>
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
-                        <button class="btn like"></button>
+                    <div><span class='like__num'>${like_num}</span></div>
+                        <button onclick="like_info()" class="btn like"></button>
                     </div>
                     <div class="cards-box__card" style="width: 18rem">
                         <a href="${url}">

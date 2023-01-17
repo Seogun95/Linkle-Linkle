@@ -278,13 +278,11 @@ def post_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
-
 @app.route("/api/posts", methods=["GET"])
 def post_list():
     category_id = int(request.args.get('category_id'))
     posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
     like_list = list(db.like.find({}, {'_id': False}))
-    print(like_list)
     # for i in range(0, len(posts_list)):
     #     like_total = list()
     #     for j in range(0, len(like_list)):
@@ -293,7 +291,7 @@ def post_list():
     #     posts_list[i]['likes'] = like_total
 
 
-    return jsonify({'posts': posts_list})
+    return jsonify({'posts': posts_list, 'like_list' : like_list})
 
 @app.route("/api/post", methods=["GET"])
 def get_post():
