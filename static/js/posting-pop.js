@@ -47,7 +47,7 @@ function urlPosting() {
 
                 <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
                 <div class='remove-btn'>
-                <button onClick='remove_post(${id})' class='remove-btn-rebtn'>삭제</button>
+                <button onclick='remove_post(${id})' class='remove-btn-rebtn'>삭제</button>
                 </div>
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
