@@ -98,8 +98,8 @@ function categoryPosting() {
             }
         },
     });
-} */
-
+}
+ */
 function remove_category(id) {
     $.ajax({
         type: 'POST',
