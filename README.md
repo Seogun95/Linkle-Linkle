@@ -28,7 +28,7 @@
 
 ## 프로젝트 시연 영상
 
-[ 미완성 ]
+https://youtu.be/Hc_jpTbDnjM
 
 ## 프로젝트 주소
 
