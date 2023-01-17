@@ -68,9 +68,7 @@ function categoryPosting() {
                 <div class="cards-box__cate-container">
                     <div class="cards-box__cateTitle"><span>${category_title}</span></div>
                 </div>
-                <div class='remove-btn'>
-                <button onclick='remove_category(${id})' class='remove-btn-rebtn'>삭제</button>
-                </div>
+                <button onclick="remove_category(${id})" class="remove-btn-rebtn"></button>
                 <div class="cards-box__container logo">
                     <div class="cards-box__card" style="width: 18rem">
                         <a href="/post?id=${id}">
