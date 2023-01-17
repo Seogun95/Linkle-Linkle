@@ -50,13 +50,8 @@ function urlPosting() {
                 <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
-<<<<<<< HEAD
-                    <div><span class='like__num'>${like_num}</span></div>
-                        <button onclick="like_info()" class="btn like"></button>
-=======
                       <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
                         <button class="btn like"></button>
->>>>>>> 32e03c191afcd0365c10402f60969861725de092
                     </div>
                     <div class="cards-box__card" style="width: 18rem">
                         <a href="${url}">
