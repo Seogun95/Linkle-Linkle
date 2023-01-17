@@ -8,8 +8,8 @@
 | ------ | ------------ | -------- | ------------------------------------------- | -------------------------------------------------- |
 | 김선중 | `프론트엔드` | `팀장`   | [Seogun95](https://github.com/Seogun95)     | [서근개발노트](https://seons-dev.tistory.com/)     |
 | 이현동 | `프론트엔드` | 팀원     | [이현동](https://github.com/hdlee0619)      | [hyeondong's develog](https://velog.io/@hdlee0619) |
-| 김대욱 | `프론트엔드` | 팀원     | [dae-wook](https://github.com/dae-wook)     | [daewook35.log](https://velog.io/@daewook35)       |
-| 이한결 | `백엔드`     | 팀원     | [Tbug-debug](https://github.com/Tbug-debug) | https://velog.io/@h6325g                           |
+| 김대욱 | `백엔드`     | 팀원     | [dae-wook](https://github.com/dae-wook)     | [daewook35.log](https://velog.io/@daewook35)       |
+| 이한결 | `프론트엔드` | 팀원     | [Tbug-debug](https://github.com/Tbug-debug) | https://velog.io/@h6325g                           |
 
 ## 목차
 
