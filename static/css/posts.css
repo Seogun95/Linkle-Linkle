@@ -35,7 +35,7 @@
     transition: all 0.2s linear;
     display: block;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 0.3rem 1rem 1rem 1rem;
     background-color: transparent;
 }
 .category__cards-box > .col:hover {
@@ -154,7 +154,8 @@
     transition: 0.3s ease;
 }
 
-.card-box__like-comment-container .btn {
+.category__cards-box .remove-btn-rebtn {
+    margin-bottom: 0.5rem;
 }
 .remove-btn-rebtn:after {
     content: '\f00d';
