@@ -3,7 +3,31 @@
 .is-postPop {
     overflow: hidden;
 }
+.login__box {
+    box-shadow: none;
+    background-color: transparent;
+}
+.login__box input {
+    background: #23232359;
+    color: white;
+    border-radius: 1rem 0 0rem 1rem;
+}
+.login__box button {
+    border-radius: 1rem;
+}
 
+.login__box input::placeholder {
+    color: #888888;
+}
+.login__box input:focus {
+    background: #2a2a2a;
+}
+.control.has-icons-left .icon {
+    color: gray;
+}
+.control.has-icons-left .input:focus ~ .icon {
+    color: white;
+}
 .main__logo {
     width: 20%;
     margin: 6rem auto 0;

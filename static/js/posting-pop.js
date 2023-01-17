@@ -46,11 +46,9 @@ function urlPosting() {
                 let temp_html = `
 
                 <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
-                <div class='remove-btn'>
-                <button onClick='remove_post(${id})' class='remove-btn-rebtn'>삭제</button>
-                </div>
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
+                      <button onClick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
                         <button class="btn like"></button>
                     </div>
                     <div class="cards-box__card" style="width: 18rem">

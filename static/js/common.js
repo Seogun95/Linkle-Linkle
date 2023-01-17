@@ -42,14 +42,14 @@ $(document).ready(function () {
     });
 
     //===========================포스팅 hover시 닫기 버튼 show
-    $('#cards-box .col').hover(
-        function () {
-            $('button', this).addClass('active');
-        },
-        function () {
-            $('button', this).removeClass('active');
-        }
-    );
+    // $('.cards-box').hover(
+    //     function () {
+    //         $('.remove-btn-rebtn', this).addClass('active');
+    //     },
+    //     function () {
+    //         $('.remove-btn-rebtn', this).removeClass('active');
+    //     }
+    // );
 });
 
 //============================로그인 버튼 눌렀을떄(JS 추가된 부분).
