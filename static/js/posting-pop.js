@@ -41,10 +41,14 @@ function urlPosting() {
                 let title = rows[i]['title'];
                 let comments = rows[i]['desc'];
                 let user_nickname = rows[i]['author'];
+                let id = rows[i]['id'];
 
                 let temp_html = `
 
                 <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
+                <div class='remove-btn'>
+                <button onClick='remove_post(${id})' class='remove-btn-rebtn'>삭제</button>
+                </div>
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
                         <button class="btn like"></button>
@@ -64,6 +68,21 @@ function urlPosting() {
                `;
                 $('.post__cards-box').append(temp_html);
             }
+        },
+    });
+}
+
+function remove_post(id) {
+    let url_href = window.location.href;
+    let url = new URL(url_href);
+    let a = url.searchParams.get('id');
+    $.ajax({
+        type: 'POST',
+        url: '/api/remove',
+        data: { remove_id: id },
+        success: function (response) {
+            alert('삭제되었습니다.');
+            window.location.href = `/post?id=${a}`;
         },
     });
 }

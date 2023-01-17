@@ -108,13 +108,11 @@ def api_login():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route('/api/nick', methods=['GET'])
+""" @app.route('/api/nick', methods=['GET'])
 def api_valid():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(payload)
-
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
         return jsonify({'result': 'success', 'id': userinfo['id']})
     except jwt.ExpiredSignatureError:
@@ -122,7 +120,7 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
-       
+        """
 
 @app.route('/api/category', methods=['POST'])
 def category_register():
@@ -305,6 +303,26 @@ def get_post():
     comment_list = list(db.comment.find({'post_id': post_id}, {'_id': False}))
 
     return jsonify({'post': post, 'comments': comment_list, 'likes' : like_list})
+
+
+@app.route("/api/remove", methods=["POST"])
+def remove_post():
+    remove_id = request.form['remove_id']
+    db.post.delete_one({'id':int(remove_id)})
+    return jsonify({'remove':'성공적으로 삭제하였습니다.'})
+
+
+@app.route("/api/cateRemove", methods=["POST"])
+def remove_cate():
+    remove_id = request.form['remove_id']
+    posts_list = list(db.post.find({'category':int(remove_id)}, {'_id': False}))
+    if len(posts_list) > 0:
+        return jsonify({'remove':'안에 내용을 지워주세요.'})
+    else:
+        db.category.delete_one({'id':int(remove_id)})
+        return jsonify({'remove':'삭제 성공했습니다.'})
+
+
 
 
 if __name__ == '__main__':

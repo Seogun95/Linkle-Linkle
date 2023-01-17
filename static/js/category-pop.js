@@ -1,6 +1,5 @@
 $(document).ready(function () {
     categoryPosting();
-    get_nick();
 });
 
 // 카테고리 post 존재시 사라지게 하는 함수
@@ -53,20 +52,6 @@ function category() {
 
 // ================================= 테스트 완료
 
-function get_nick() {
-    $.ajax({
-        type: 'GET',
-        url: '/api/nick',
-        data: {},
-        success: function (response) {
-            let res = response['result'];
-            if (res == 'success') {
-                categoryPosting(res);
-            }
-        },
-    });
-}
-
 function categoryPosting() {
     $.ajax({
         type: 'GET',
@@ -83,6 +68,9 @@ function categoryPosting() {
                 <div class="cards-box__cate-container">
                     <div class="cards-box__cateTitle"><span>${category_title}</span></div>
                 </div>
+                <div class='remove-btn'>
+                <button onClick='remove_category(${id})' class='remove-btn-rebtn'>삭제</button>
+                </div>
                 <div class="cards-box__container logo">
                     <div class="cards-box__card" style="width: 18rem">
                         <a href="/post?id=${id}">
@@ -97,3 +85,29 @@ function categoryPosting() {
     });
 }
 // =================================
+
+/* function get_nick() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/nick',
+        data: {},
+        success: function (response) {
+            let res = response['result'];
+            if (res == 'success') {
+                console.log(response['id']);
+            }
+        },
+    });
+} */
+
+function remove_category(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/api/cateRemove',
+        data: { remove_id: id },
+        success: function (response) {
+            alert(response['remove']);
+            window.location.href = `/category`;
+        },
+    });
+}

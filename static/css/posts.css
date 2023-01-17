@@ -208,6 +208,21 @@
 .card-box__like-comment-container .comment:before {
     content: '\f27a';
 }
+
+.remove-btn {
+    padding-bottom: 10px;
+}
+
+.remove-btn-rebtn {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: skyblue;
+    padding: 5px;
+}
+
+.remove-btn-rebtn:hover {
+    color: red;
+}
 @keyframes rotate-90-cw {
     0% {
         transform: rotate(0);
