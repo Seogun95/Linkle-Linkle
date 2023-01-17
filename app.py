@@ -284,6 +284,7 @@ def post_list():
     category_id = int(request.args.get('category_id'))
     posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
     like_list = list(db.like.find({}, {'_id': False}))
+    print(like_list)
     # for i in range(0, len(posts_list)):
     #     like_total = list()
     #     for j in range(0, len(like_list)):
