@@ -28,7 +28,7 @@
 
 ## 2. 프로젝트 시연 영상
 
-https://youtu.be/Hc_jpTbDnjM
+[유튜브 링크](https://youtu.be/jn9Tyibmg6g)
 
 ## 3. 프로젝트 주소
 
@@ -49,18 +49,33 @@ https://youtu.be/Hc_jpTbDnjM
 
 ## 7. API Table
 
-| Number | Method | URL                                   | Description     | Request                                                                                        | Response                                                                                                                                                                                                     |
-| ------ | ------ | ------------------------------------- | --------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1      | `POST` | /api/login                            | 로그인          | {'id' : id, 'pw' : pw}                                                                         | /token                                                                                                                                                                                                       |
-| 2      | `POST` | /api/sign_in                          | 회원가입        | {'id' : id, 'pw' : pw}                                                                         |                                                                                                                                                                                                              |
-| 3      | `POST` | /api/comment                          | 댓글 등록       | { post_id : 포스트id, comment: 댓글 내용, }                                                    |                                                                                                                                                                                                              |
-| 4      | `POST` | /api/like                             | 좋아요          | ‘post_id’: 포스트id                                                                            |                                                                                                                                                                                                              |
-| 5      | `POST` | /api/category                         | 카테고리 등록   | {category_name : category_name}                                                                |                                                                                                                                                                                                              |
-| 6      | `POST` | /api/posting                          | 게시글 등록     | { post_title : ‘제목’, post_desc : ‘설명’, post_url : ‘url’, post_category : 카테고리의 id값 } |                                                                                                                                                                                                              |
-| 7      | `GET`  | /api/posts                            | 게시글 리스트   | category_id : 카테고리의 id값                                                                  | {’posts: post_list} `'id': count,'author': userinfo['id'],'title': title_receive,'desc': desc_receive,'image': image,'category': int(category_receive),'reg_dt': datetime.now(),'link_url': url,'status': 0` |
-| 8      | `GET`  | /api/categories                       | 카테고리 리스트 | \-                                                                                             | {’categories : category_list} category_list={`'id': count,'author': userinfo['id'],'img' : img_receive,'name': category_receive,'status': 0`}                                                                |
-| 9      | `GET`  | /api/post?category_id=카테고리 아이디 | 게시글 1개      | post-id(쿼리스트링)                                                                            |                                                                                                                                                                                                              |
+| Number | Method | URL                                   | Description     | Request                                                      | Response                                                     |
+| ------ | ------ | ------------------------------------- | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1      | `POST` | /api/login                            | 로그인          | {'id' : id, 'pw' : pw}                                       | /token                                                       |
+| 2      | `POST` | /api/sign_in                          | 회원가입        | {'id' : id, 'pw' : pw}                                       |                                                              |
+| 3      | `POST` | /api/comment                          | 댓글 등록       | { post_id : 포스트id, comment: 댓글 내용, }                  |                                                              |
+| 4      | `POST` | /api/like                             | 좋아요          | ‘post_id’: 포스트id                                          |                                                              |
+| 5      | `POST` | /api/category                         | 카테고리 등록   | {category_name : category_name}                              |                                                              |
+| 6      | `POST` | /api/posting                          | 게시글 등록     | { post_title : ‘제목’, post_desc : ‘설명’, post_url : ‘url’, post_category : 카테고리의 id값 } |                                                              |
+| 7      | `GET`  | /api/posts                            | 게시글 리스트   | category_id : 카테고리의 id값                                | {’posts: post_list} `'id': count,'author': userinfo['id'],'title': title_receive,'desc': desc_receive,'image': image,'category': int(category_receive),'reg_dt': datetime.now(),'link_url': url,'status': 0` |
+| 8      | `GET`  | /api/categories                       | 카테고리 리스트 | \-                                                           | {’categories : category_list} category_list={`'id': count,'author': userinfo['id'],'img' : img_receive,'name': category_receive,'status': 0`} |
+| 9      | `GET`  | /api/post?category_id=카테고리 아이디 | 게시글 1개      | post-id(쿼리스트링)                                          |                                                              |
 
 ## 8. 구현 기능
 
-[작성중]
+### 1) 홈 화면 및 로그인 화면
+![CleanShot 2023-01-18 at 23 28 03](https://user-images.githubusercontent.com/76584961/213198276-d37c693a-7c22-443f-94fd-3f612cd0bc39.png)
+![CleanShot 2023-01-18 at 23 27 53](https://user-images.githubusercontent.com/76584961/213198300-527c7ca8-cb0c-434a-90da-ab10b88aa569.png)
+
+### 2) 카테고리 화면 및 카테고리 등록 화면
+![CleanShot 2023-01-18 at 23 30 24](https://user-images.githubusercontent.com/76584961/213198375-f048d3e8-ee7a-4e76-9078-23a3cc1d03b0.png)
+![CleanShot 2023-01-18 at 23 30 28](https://user-images.githubusercontent.com/76584961/213198384-02c7accc-7646-4b50-a91f-ce2405cacc65.png)
+
+### 3) 카테고리별 카드 리스트 화면 및 등록 화면 
+![CleanShot 2023-01-18 at 23 30 38](https://user-images.githubusercontent.com/76584961/213198456-a3022792-f3fe-46dc-a2b0-84f3c3cf4c98.png)
+![CleanShot 2023-01-18 at 23 30 42](https://user-images.githubusercontent.com/76584961/213198472-41b231b3-1e63-4cc4-a148-0b7e425a93a3.png)
+
+
+
+
+
