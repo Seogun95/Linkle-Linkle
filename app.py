@@ -198,14 +198,15 @@ def like():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         post_id = request.form['post_id']
+        category_id = request.form['category_id']
 
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
         doc = {
             'post_id': post_id,
+            'category_id': category_id,
             'author': userinfo['id'],
         }
-        like = db.like.find_one({            'post_id': post_id,
-            'author': userinfo['id'],})
+        like = db.like.find_one(doc)
         if like is None:
             db.like.insert_one(doc)
         else:
