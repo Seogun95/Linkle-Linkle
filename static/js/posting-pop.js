@@ -33,11 +33,15 @@ function urlPosting() {
         url: `/api/posts?category_id=${a}`,
         data: {},
         success: function (response) {
+            console.log(response)
             let rows = response['posts'];
             let like = response['like_list'];
+<<<<<<< HEAD
             let like_num = like.length;
             console.log(like);
             console.log(rows);
+=======
+>>>>>>> 9a8bb9596ed9b03bc1386be156488a345c053939
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
@@ -53,7 +57,7 @@ function urlPosting() {
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
                       <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
-                      <span>${like_num}</span>
+                      <span style='color: white'>${like_num}</span>
                         <button onclick='like_post(${id})' class="btn like"></button>
                     </div>
                     <div class="cards-box__card" style="width: 18rem">
