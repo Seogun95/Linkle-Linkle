@@ -36,6 +36,7 @@ function urlPosting() {
             let rows = response['posts'];
             let like = response['like_list'];
             let like_num = like.length;
+            let like_count = like[0]?.post_id;
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
@@ -44,6 +45,7 @@ function urlPosting() {
                 let comments = rows[i]['desc'];
                 let user_nickname = rows[i]['author'];
                 let id = rows[i]['id'];
+                let count_C = String(id) == like[i]?.post_id ? like_num : '0';
 
                 let temp_html = `
 
@@ -51,7 +53,8 @@ function urlPosting() {
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
                       <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
-                        <button class="btn like"></button>
+                      <span>${like_num}</span>
+                        <button onclick='like_post(${id})' class="btn like"></button>
                     </div>
                     <div class="cards-box__card" style="width: 18rem">
                         <a href="${url}">
@@ -67,6 +70,21 @@ function urlPosting() {
                `;
                 $('.post__cards-box').append(temp_html);
             }
+        },
+    });
+}
+
+function like_post(id) {
+    let url_href = window.location.href;
+    let url = new URL(url_href);
+    let a = url.searchParams.get('id');
+    $.ajax({
+        type: 'POST',
+        url: '/api/like',
+        data: { post_id: id },
+        success: function (response) {
+            alert('좋아요.');
+            window.location.href = `/post?id=${a}`;
         },
     });
 }
