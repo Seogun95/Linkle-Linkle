@@ -7,11 +7,10 @@ from pymongo import MongoClient
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import requests
 from bs4 import BeautifulSoup
+
 app = Flask(__name__)
 
-
 ca = certifi.where()
-
 
 # JWT 토큰을 만들 때 필요한 비밀문자열입니다. 아무거나 입력해도 괜찮습니다.
 # 이 문자열은 서버만 알고있기 때문에, 내 서버에서만 토큰을 인코딩(=만들기)/디코딩(=풀기) 할 수 있습니다.
@@ -25,7 +24,8 @@ SECRET_KEY = 'SPARTA'
 # 그렇지 않으면, 개발자(=나)가 회원들의 비밀번호를 볼 수 있으니까요.^^;
 
 
-client = MongoClient('mongodb+srv://sparta:1234@cluster0.txh1xie.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://sparta:1234@cluster0.txh1xie.mongodb.net/?retryWrites=true&w=majority',
+                     tlsCAFile=ca)
 
 db = client.linkle
 app = Flask(__name__)
@@ -45,6 +45,7 @@ def home():
         # return jsonify({'msg': '로그인 정보가 존재하지 않습니다.'})
         return render_template('index.html')
 
+
 @app.route('/login')
 def login():
     msg = request.args.get("msg")
@@ -55,9 +56,11 @@ def login():
 def register():
     return render_template('register.html')
 
+
 @app.route('/category')
 def category():
     return render_template('home-category.html')
+
 
 @app.route('/post')
 def posts():
@@ -119,7 +122,7 @@ def api_valid():
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
-        
+
 
 @app.route('/api/category', methods=['POST'])
 def category_register():
@@ -143,7 +146,7 @@ def category_register():
             doc = {
                 'id': count,
                 'author': userinfo['id'],
-                'img' : img_receive,
+                'img': img_receive,
                 'name': category_receive,
                 'status': 0
             }
@@ -158,13 +161,13 @@ def category_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+
 @app.route('/api/comment', methods=['POST'])
 def comment_register():
     token_receive = request.cookies.get('mytoken')
     try:
         post_id = request.form['post_id']
         comment_receive = request.form['comment']
-
 
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
@@ -192,13 +195,14 @@ def comment_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+
 @app.route('/api/like', methods=['POST'])
 def like():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        post_id = request.form['post_id']
-        category_id = request.form['category_id']
+        post_id = int(request.form['post_id'])
+        category_id = int(request.form['category_id'])
 
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
         doc = {
@@ -248,7 +252,7 @@ def post_register():
         # title = soup.select_one('meta[property="og:title"]')['content']
         image = soup.select_one('meta[property="og:image"]')['content']
         # desc = soup.select_one('meta[property="og:description"]')['content']
-  
+
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -280,6 +284,7 @@ def post_register():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+
 @app.route("/api/posts", methods=["GET"])
 def post_list():
     category_id = int(request.args.get('category_id'))
@@ -288,12 +293,12 @@ def post_list():
     for i in range(0, len(posts_list)):
         like_total = list()
         for j in range(0, len(like_list)):
-            if(posts_list[i]['id'] == like_list[j]['post_id']):
-                 like_total.append(like_list[j])
+            if posts_list[i]['id'] == like_list[j]['post_id'] and posts_list[i]['category'] == like_list[j]['category_id']:
+                like_total.append(like_list[j])
         posts_list[i]['likes'] = like_total
 
+    return jsonify({'posts': posts_list})
 
-    return jsonify({'posts': posts_list, 'like_list' : like_list})
 
 @app.route("/api/post", methods=["GET"])
 def get_post():
@@ -302,27 +307,25 @@ def get_post():
     like_list = list(db.like.find({'post_id': post_id}, {'_id': False}))
     comment_list = list(db.comment.find({'post_id': post_id}, {'_id': False}))
 
-    return jsonify({'post': post, 'comments': comment_list, 'likes' : like_list})
+    return jsonify({'post': post, 'comments': comment_list, 'likes': like_list})
 
 
 @app.route("/api/remove", methods=["POST"])
 def remove_post():
     remove_id = request.form['remove_id']
-    db.post.delete_one({'id':int(remove_id)})
-    return jsonify({'remove':'성공적으로 삭제하였습니다.'})
+    db.post.delete_one({'id': int(remove_id)})
+    return jsonify({'remove': '성공적으로 삭제하였습니다.'})
 
 
 @app.route("/api/cateRemove", methods=["POST"])
 def remove_cate():
     remove_id = request.form['remove_id']
-    posts_list = list(db.post.find({'category':int(remove_id)}, {'_id': False}))
+    posts_list = list(db.post.find({'category': int(remove_id)}, {'_id': False}))
     if len(posts_list) > 0:
-        return jsonify({'remove':'안에 내용을 지워주세요.'})
+        return jsonify({'remove': '안에 내용을 지워주세요.'})
     else:
-        db.category.delete_one({'id':int(remove_id)})
-        return jsonify({'remove':'삭제 성공했습니다.'})
-
-
+        db.category.delete_one({'id': int(remove_id)})
+        return jsonify({'remove': '삭제 성공했습니다.'})
 
 
 if __name__ == '__main__':
