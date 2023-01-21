@@ -107,39 +107,6 @@ function urlPosting() {
     });
 }
 
-/* function like() {
-    let url_href = window.location.href;
-    let url = new URL(url_href);
-    let a = url.searchParams.get('id');
-    $.ajax({
-        type: 'GET',
-        url: `/api/posts?category_id=${a}`,
-        data: {},
-        success: function (response) {
-            let rows = response['posts'];
-            for (let i = 0; i < rows.length; i++) {
-                let likes = rows[i]['like_yn'];
-                let id = rows[i]['id'];
-                if (likes == true) {
-                    let temp_html = `  <div class="card-box__like-comment-container">
-                    <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
-                    <span style='color: white'>${rows[i]['likes']}</span>
-                      <button onclick='like_post(${id})' class="btn like red"></button>
-                  </div>`;
-                    $('.post__cards-box').append(temp_html);
-                } else if (likes == false) {
-                    let temp_html = `  <div class="card-box__like-comment-container">
-                    <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
-                    <span style='color: white'>${rows[i]['likes']}</span>
-                      <button onclick='like_post(${id})' class="btn like "></button>
-                  </div>`;
-                    $('.post__cards-box').append(temp_html);
-                }
-            }
-        },
-    });
-}
- */
 function like_post(id) {
     let url_href = window.location.href;
     let url = new URL(url_href);
