@@ -287,17 +287,47 @@ def post_register():
 
 @app.route("/api/posts", methods=["GET"])
 def post_list():
-    category_id = int(request.args.get('category_id'))
-    posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
-    like_list = list(db.like.find({}, {'_id': False}))
-    for i in range(0, len(posts_list)):
-        like_total = list()
-        for j in range(0, len(like_list)):
-            if posts_list[i]['id'] == like_list[j]['post_id'] and posts_list[i]['category'] == like_list[j]['category_id']:
-                like_total.append(like_list[j])
-        posts_list[i]['likes'] = like_total
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_id = payload['id']
+        category_id = int(request.args.get('category_id'))
+        posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
+        like_list = list(db.like.find({'category_id' :category_id}, {'_id': False}))
 
-    return jsonify({'posts': posts_list})
+        for like in like_list:
+            if like['author'] == user_id:
+                like_yn = True
+                break
+        for i in range(0, len(posts_list)):
+            like_total = list()
+            like_yn = False
+            for j in range(0, len(like_list)):
+                if posts_list[i]['id'] == like_list[j]['post_id'] and posts_list[i]['category'] == like_list[j]['category_id']:
+                    like_total.append(like_list[j])
+                if posts_list[i]['id'] == like_list[j]['post_id'] and posts_list[i]['category'] == like_list[j]['category_id'] and like_list[j]['author'] == user_id:
+                    like_yn = True
+            posts_list[i]['likes'] = len(like_total)
+            posts_list[i]['like_yn'] = like_yn
+
+
+        # for i in range(0, len(posts_list)):
+        #     like_total = list()
+        #     for j in range(0, len(like_list)):
+        #         if posts_list[i]['id'] == like_list[j]['post_id'] and posts_list[i]['category'] == like_list[j]['category_id']:
+        #             like_total.append(like_list[j])
+        #     posts_list[i]['likes'] = like_total
+
+        return jsonify({'posts': posts_list})
+
+
+
+    except jwt.ExpiredSignatureError:
+        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
 
 
 @app.route("/api/post", methods=["GET"])

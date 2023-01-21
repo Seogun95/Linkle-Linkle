@@ -50,6 +50,7 @@ function urlPosting() {
         data: {},
         success: function (response) {
             let rows = response['posts'];
+            console.log(rows)
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
@@ -64,7 +65,7 @@ function urlPosting() {
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
                       <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
-                      <span style='color: white'>${rows[i]['likes'].length}</span>
+                      <span style='color: white'>${rows[i]['likes']}</span>
                         <button onclick='like_post(${id})' class="btn like"></button>
                     </div>
                     <div class="cards-box__card" style="width: 18rem">
