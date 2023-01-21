@@ -295,10 +295,10 @@ def post_list():
         posts_list = list(db.post.find({'category': category_id}, {'_id': False}))
         like_list = list(db.like.find({'category_id' :category_id}, {'_id': False}))
 
-        for like in like_list:
-            if like['author'] == user_id:
-                like_yn = True
-                break
+        # for like in like_list:
+        #     if like['author'] == user_id:
+        #         like_yn = True
+        #         break
         for i in range(0, len(posts_list)):
             like_total = list()
             like_yn = False
