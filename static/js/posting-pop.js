@@ -1,7 +1,5 @@
 $(document).ready(function () {
     urlPosting();
-    //get_nick();
-    //like();
 });
 
 // ================================= 테스트 완료
@@ -50,7 +48,6 @@ function urlPosting() {
         data: {},
         success: function (response) {
             let rows = response['posts'];
-            console.log(rows)
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
@@ -59,14 +56,15 @@ function urlPosting() {
                 let comments = rows[i]['desc'];
                 let user_nickname = rows[i]['author'];
                 let id = rows[i]['id'];
-
-                let temp_html = `
+                let likes = rows[i]['like_yn'];
+                if (likes == true) {
+                    let temp_html = `
                 <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
                       <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
                       <span style='color: white'>${rows[i]['likes']}</span>
-                        <button onclick='like_post(${id})' class="btn like"></button>
+                        <button onclick='like_post(${id})' class="btn like red"></button>
                     </div>
                     <div class="cards-box__card" style="width: 18rem">
                         <a href="${url}">
@@ -80,14 +78,36 @@ function urlPosting() {
                 </div>
             </div>
                `;
-                $('.post__cards-box').append(temp_html);
+                    $('.post__cards-box').append(temp_html);
+                } else if (likes == false) {
+                    let temp_html = `
+                    <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
+                    <div class="cards-box__container logo">
+                        <div class="card-box__like-comment-container">
+                          <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
+                          <span style='color: white'>${rows[i]['likes']}</span>
+                            <button onclick='like_post(${id})' class="btn like"></button>
+                        </div>
+                        <div class="cards-box__card" style="width: 18rem">
+                            <a href="${url}">
+                                <img src="${img}" class="cards-box__img" alt="bookimage" />
+    
+                                <p class="cards-box__body-title" id="${category_title}">${title}</p>
+                            </a>
+                            <p class="cards-box__body-comment">${comments}</p>
+                            <p class="cards-box__body-user">by. ${user_nickname}</p>
+                        </div>
+                    </div>
+                </div>
+                   `;
+                    $('.post__cards-box').append(temp_html);
+                }
             }
         },
     });
 }
 
-/* 
-function like(name) {
+/* function like() {
     let url_href = window.location.href;
     let url = new URL(url_href);
     let a = url.searchParams.get('id');
@@ -96,12 +116,24 @@ function like(name) {
         url: `/api/posts?category_id=${a}`,
         data: {},
         success: function (response) {
-            let res = response['posts'];
             let rows = response['posts'];
             for (let i = 0; i < rows.length; i++) {
-                let user_nickname = rows[i]['likes']['author'];
-                if (name == user_nickname) {
-                    $('.like').addClass('red');
+                let likes = rows[i]['like_yn'];
+                let id = rows[i]['id'];
+                if (likes == true) {
+                    let temp_html = `  <div class="card-box__like-comment-container">
+                    <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
+                    <span style='color: white'>${rows[i]['likes']}</span>
+                      <button onclick='like_post(${id})' class="btn like red"></button>
+                  </div>`;
+                    $('.post__cards-box').append(temp_html);
+                } else if (likes == false) {
+                    let temp_html = `  <div class="card-box__like-comment-container">
+                    <button onclick='remove_post(${id})' class='remove-btn-rebtn pos'></button>
+                    <span style='color: white'>${rows[i]['likes']}</span>
+                      <button onclick='like_post(${id})' class="btn like "></button>
+                  </div>`;
+                    $('.post__cards-box').append(temp_html);
                 }
             }
         },
