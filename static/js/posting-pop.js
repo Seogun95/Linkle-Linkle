@@ -1,5 +1,7 @@
 $(document).ready(function () {
     urlPosting();
+    //get_nick();
+    //like();
 });
 
 // ================================= 테스트 완료
@@ -24,6 +26,20 @@ function posting() {
 
 // =================================
 
+function get_nick() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/nick',
+        data: {},
+        success: function (response) {
+            let res = response['result'];
+            if (res == 'success') {
+                like(response['id']);
+            }
+        },
+    });
+}
+
 function urlPosting() {
     let url_href = window.location.href;
     let url = new URL(url_href);
@@ -34,7 +50,6 @@ function urlPosting() {
         data: {},
         success: function (response) {
             let rows = response['posts'];
-
             for (let i = 0; i < rows.length; i++) {
                 let url = rows[i]['link_url'];
                 let img = rows[i]['image'];
@@ -45,7 +60,6 @@ function urlPosting() {
                 let id = rows[i]['id'];
 
                 let temp_html = `
-
                 <div class="col cards-box" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" data-aos-once="false">
                 <div class="cards-box__container logo">
                     <div class="card-box__like-comment-container">
@@ -71,6 +85,28 @@ function urlPosting() {
     });
 }
 
+/* 
+function like(name) {
+    let url_href = window.location.href;
+    let url = new URL(url_href);
+    let a = url.searchParams.get('id');
+    $.ajax({
+        type: 'GET',
+        url: `/api/posts?category_id=${a}`,
+        data: {},
+        success: function (response) {
+            let res = response['posts'];
+            let rows = response['posts'];
+            for (let i = 0; i < rows.length; i++) {
+                let user_nickname = rows[i]['likes']['author'];
+                if (name == user_nickname) {
+                    $('.like').addClass('red');
+                }
+            }
+        },
+    });
+}
+ */
 function like_post(id) {
     let url_href = window.location.href;
     let url = new URL(url_href);

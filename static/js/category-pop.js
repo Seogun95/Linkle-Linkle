@@ -84,20 +84,6 @@ function categoryPosting() {
 }
 // =================================
 
-/* function get_nick() {
-    $.ajax({
-        type: 'GET',
-        url: '/api/nick',
-        data: {},
-        success: function (response) {
-            let res = response['result'];
-            if (res == 'success') {
-                console.log(response['id']);
-            }
-        },
-    });
-}
- */
 function remove_category(id) {
     $.ajax({
         type: 'POST',
